@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+Dynamic CNAPP Dashboard - Frontend Assignment
+This project is a dynamic and customizable dashboard application built with React. It was created as a solution for a frontend trainee assignment, focusing on component-based architecture, state management with the Context API, and data visualization with Chart.js. The goal was to replicate a provided UI mockup with full functionality.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
+Dynamic Grid Layout: The entire dashboard, including categories and widgets, is rendered dynamically from a single JSON configuration file (dashboardData.json).
 
-## Available Scripts
+Add & Remove Widgets: Users can dynamically add or remove widgets from each category using an interactive modal.
 
-In the project directory, you can run:
+State Management: Centralized state management is handled efficiently using React's Context API and the useReducer hook, allowing for actions like toggling widget visibility and resetting the dashboard state.
 
-### `npm start`
+Data Visualization: Widgets display interactive charts (Doughnut and Stacked Bar) using the Chart.js and react-chartjs-2 libraries to represent data visually.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Search Functionality: The "Add Widget" modal includes a search bar to easily find and filter available widgets across different categories.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Interactive UI: Includes functional header buttons for adding widgets and refreshing the dashboard state without a page reload.
 
-### `npm test`
+Technology Stack
+React: A JavaScript library for building user interfaces.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+React Hooks: useState, useReducer, and useContext for state management and component logic.
 
-### `npm run build`
+Chart.js & react-chartjs-2: For creating interactive and visually appealing charts.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+CSS3: For custom styling, including modern techniques like CSS Grid, Flexbox, and custom properties for a clean and maintainable stylesheet.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Getting Started
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Prerequisites
+Make sure you have Node.js and npm (or yarn) installed on your system.
 
-### `npm run eject`
+Node.js: Download & Install Node.js
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+npm: Comes bundled with Node.js.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Installation & Setup
+Create a new React project (if you are starting from scratch):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+npx create-react-app my-dashboard-app
+cd my-dashboard-app
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Install project dependencies:
+This project requires chart.js for data visualization. Install it along with its React wrapper.
 
-## Learn More
+npm install chart.js react-chartjs-2
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Replace the code:
+Copy the provided project files (App.js, index.css, components/, context/, data/) into the src folder of your new React app.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Run the development server:
 
-### Code Splitting
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The application will open automatically in your browser at http://localhost:3000.
 
-### Analyzing the Bundle Size
+Project Structure
+The project follows a standard React application structure to keep the code organized and maintainable.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+my-dashboard-app/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/       # Reusable React components
+│   │   ├── charts/       # Chart-specific components
+│   │   │   ├── DoughnutChart.js
+│   │   │   └── StackedBarChart.js
+│   │   ├── AddWidgetModal.js
+│   │   └── Widget.js
+│   ├── context/          # React Context for global state management
+│   │   └── DashboardContext.js
+│   ├── data/             # Static JSON data
+│   │   └── dashboardData.json
+│   ├── App.js            # Main application component
+│   ├── index.css         # Global styles
+│   └── index.js          # Entry point of the application
+└── README.md
 
-### Making a Progressive Web App
+How It Works
+The UI is driven by the src/data/dashboardData.json file. This file defines the categories and the list of all available widgets, including their type (e.g., 'doughnut'), content, and initial visibility.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Global state is managed in DashboardContext.js. The useReducer hook handles actions like TOGGLE_WIDGET and RESET_DASHBOARD.
 
-### Advanced Configuration
+The Widget.js component conditionally renders the correct content based on the type property in the JSON data, delegating to chart components or rendering plain text as needed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The AddWidgetModal.js component allows users to toggle the isVisible property of any widget. The changes are dispatched to the central context, causing the UI to re-render in real-time.
