@@ -1,85 +1,108 @@
-Dynamic CNAPP Dashboard - Frontend Assignment
-This project is a dynamic and customizable dashboard application built with React. It was created as a solution for a frontend trainee assignment, focusing on component-based architecture, state management with the Context API, and data visualization with Chart.js. The goal was to replicate a provided UI mockup with full functionality.
+# Dynamic CNAPP Dashboard (Create React App)
 
-Features
-Dynamic Grid Layout: The entire dashboard, including categories and widgets, is rendered dynamically from a single JSON configuration file (dashboardData.json).
+This project is a dynamic and customizable dashboard application built
+with React, bootstrapped with Create React App. It was created as a
+solution for a frontend trainee assignment, focusing on modern React
+principles like hooks for state management, component-based
+architecture, and data visualization.
 
-Add & Remove Widgets: Users can dynamically add or remove widgets from each category using an interactive modal.
+## ✨ Features
 
-State Management: Centralized state management is handled efficiently using React's Context API and the useReducer hook, allowing for actions like toggling widget visibility and resetting the dashboard state.
+-   **Fully Dynamic**: The entire dashboard, including categories and
+    widgets, is rendered from a single JSON object.
+-   **Add & Remove Widgets**: Users can dynamically add or remove
+    widgets from each category using an interactive modal.
+-   **Centralized State Management**: State is handled efficiently using
+    React's Context API and `useReducer` hook.
+-   **Data Visualization**: Widgets display interactive charts (Doughnut
+    and Stacked Bar) using the Chart.js library.
+-   **Search Functionality**: The "Add Widget" modal includes a search
+    bar to easily filter available widgets.
+-   **Reset to Default**: A refresh button instantly resets the
+    dashboard to its initial state.
 
-Data Visualization: Widgets display interactive charts (Doughnut and Stacked Bar) using the Chart.js and react-chartjs-2 libraries to represent data visually.
+## 🛠 Technology Stack
 
-Search Functionality: The "Add Widget" modal includes a search bar to easily find and filter available widgets across different categories.
+-   **React**: A JavaScript library for building user interfaces.
+-   **React Hooks**: `useState`, `useReducer`, `useContext`, and
+    `createContext`.
+-   **Chart.js & react-chartjs-2**: For creating interactive and
+    visually appealing charts.
 
-Interactive UI: Includes functional header buttons for adding widgets and refreshing the dashboard state without a page reload.
+## 🚀 Getting Started
 
-Technology Stack
-React: A JavaScript library for building user interfaces.
+Follow these instructions to get the project up and running on your
+local machine.
 
-React Hooks: useState, useReducer, and useContext for state management and component logic.
+### Prerequisites
 
-Chart.js & react-chartjs-2: For creating interactive and visually appealing charts.
+You must have **Node.js** (which includes npm) installed on your system.
 
-CSS3: For custom styling, including modern techniques like CSS Grid, Flexbox, and custom properties for a clean and maintainable stylesheet.
+### Installation & Setup
 
-Getting Started
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
+1.  **Create a new React project**:
 
-Prerequisites
-Make sure you have Node.js and npm (or yarn) installed on your system.
+    ``` bash
+    npx create-react-app my-dashboard-app
+    cd my-dashboard-app
+    ```
 
-Node.js: Download & Install Node.js
+2.  **Install Dependencies**: This project requires chart.js. Install it
+    along with its React wrapper.
 
-npm: Comes bundled with Node.js.
+    ``` bash
+    npm install chart.js react-chartjs-2
+    ```
 
-Installation & Setup
-Create a new React project (if you are starting from scratch):
+3.  **Replace the Code**: Open the `src/` folder. Replace the contents
+    of `App.js` and `index.css` with the code provided for this project.
 
-npx create-react-app my-dashboard-app
-cd my-dashboard-app
+### Available Scripts
 
-Install project dependencies:
-This project requires chart.js for data visualization. Install it along with its React wrapper.
+In the project directory, you can run:
 
-npm install chart.js react-chartjs-2
+-   **`npm start`**\
+    Runs the app in the development mode.\
+    Open <http://localhost:3000> to view it in your browser.\
+    The page will reload when you make changes.\
+    You may also see any lint errors in the console.
 
-Replace the code:
-Copy the provided project files (App.js, index.css, components/, context/, data/) into the src folder of your new React app.
+-   **`npm run build`**\
+    Builds the app for production to the `build` folder.\
+    It correctly bundles React in production mode and optimizes the
+    build for the best performance.\
+    Your app is ready to be deployed!\
+    See the section about deployment for more information.
 
-Run the development server:
+-   **`npm test`**\
+    Launches the test runner in the interactive watch mode.\
+    See the section about running tests for more information.
 
-npm start
+## ⚙️ How It Works
 
-The application will open automatically in your browser at http://localhost:3000.
+This project is a great example of a moderately complex application
+built within a single file. Here's a breakdown of its architecture:
 
-Project Structure
-The project follows a standard React application structure to keep the code organized and maintainable.
+### Data Source (`initialData`)
 
-my-dashboard-app/
-├── public/
-│   └── index.html
-├── src/
-│   ├── components/       # Reusable React components
-│   │   ├── charts/       # Chart-specific components
-│   │   │   ├── DoughnutChart.js
-│   │   │   └── StackedBarChart.js
-│   │   ├── AddWidgetModal.js
-│   │   └── Widget.js
-│   ├── context/          # React Context for global state management
-│   │   └── DashboardContext.js
-│   ├── data/             # Static JSON data
-│   │   └── dashboardData.json
-│   ├── App.js            # Main application component
-│   ├── index.css         # Global styles
-│   └── index.js          # Entry point of the application
-└── README.md
+A constant JavaScript object at the top of the file acts as our
+"database." It defines the structure, content, and initial state of all
+widgets.
 
-How It Works
-The UI is driven by the src/data/dashboardData.json file. This file defines the categories and the list of all available widgets, including their type (e.g., 'doughnut'), content, and initial visibility.
+### State Management (`DashboardContext`)
 
-Global state is managed in DashboardContext.js. The useReducer hook handles actions like TOGGLE_WIDGET and RESET_DASHBOARD.
+-   A `dashboardReducer` function handles all state transitions
+    (toggling widget visibility, resetting the dashboard).
+-   `DashboardProvider` wraps the main application, making the state and
+    dispatch function available to all child components via the
+    `useDashboard` custom hook.
 
-The Widget.js component conditionally renders the correct content based on the type property in the JSON data, delegating to chart components or rendering plain text as needed.
+### Components
 
-The AddWidgetModal.js component allows users to toggle the isVisible property of any widget. The changes are dispatched to the central context, causing the UI to re-render in real-time.
+-   All components (`DoughnutChart`, `Widget`, `AddWidgetModal`, etc.)
+    are defined as functions within the same file.
+-   The `Widget` component conditionally renders the correct content (a
+    chart or text) based on the `type` property defined in the
+    `initialData` object.
+
+------------------------------------------------------------------------
