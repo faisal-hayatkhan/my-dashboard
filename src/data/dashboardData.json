@@ -1,0 +1,97 @@
+[
+  {
+    "categoryId": "cspm",
+    "categoryName": "CSPM Executive Dashboard",
+    "widgets": [
+      {
+        "widgetId": "cspm-1",
+        "title": "Cloud Accounts",
+        "type": "doughnut",
+        "isVisible": true,
+        "total": 4,
+        "chartData": {
+          "labels": ["Connected", "Not Connected"],
+          "datasets": [{
+            "data": [2, 2],
+            "backgroundColor": ["#36A2EB", "#C4D3E5"],
+            "borderColor": ["#36A2EB", "#C4D3E5"],
+            "borderWidth": 1
+          }]
+        }
+      },
+      {
+        "widgetId": "cspm-2",
+        "title": "Cloud Account Risk Assessment",
+        "type": "doughnut",
+        "isVisible": true,
+        "total": 9659,
+        "chartData": {
+          "labels": ["Passed", "Failed", "Warning", "Not available"],
+          "datasets": [{
+            "data": [7253, 1089, 68, 38],
+            "backgroundColor": ["#2ECC71", "#E74C3C", "#F1C40F", "#BDC3C7"],
+            "borderColor": ["#2ECC71", "#E74C3C", "#F1C40F", "#BDC3C7"],
+            "borderWidth": 1
+          }]
+        }
+      }
+    ]
+  },
+  {
+    "categoryId": "cwpp",
+    "categoryName": "CWPP Dashboard",
+    "widgets": [
+      {
+        "widgetId": "cwpp-1",
+        "title": "Top 5 Namespace Specific Alerts",
+        "type": "text",
+        "content": "No Graph data available",
+        "isVisible": true
+      },
+      {
+        "widgetId": "cwpp-2",
+        "title": "Workload Alerts",
+        "type": "text",
+        "content": "No Graph data available",
+        "isVisible": true
+      }
+    ]
+  },
+  {
+    "categoryId": "registry",
+    "categoryName": "Registry Scan",
+    "widgets": [
+      {
+        "widgetId": "registry-1",
+        "title": "Image Risk Assessment",
+        "type": "stackedBar",
+        "isVisible": true,
+        "totalLabel": "1470 Total vulnerabilities",
+        "chartData": {
+          "labels": [""],
+          "datasets": [
+            { "label": "Critical", "data": [6], "backgroundColor": "#9B2335" },
+            { "label": "High", "data": [754], "backgroundColor": "#E74C3C" },
+            { "label": "Medium", "data": [710], "backgroundColor": "#F39C12" }
+          ]
+        }
+      },
+      {
+        "widgetId": "registry-2",
+        "title": "Image Security Issues",
+        "type": "stackedBar",
+        "isVisible": true,
+        "totalLabel": "2 Total images",
+        "chartData": {
+          "labels": [""],
+          "datasets": [
+            { "label": "Critical", "data": [1], "backgroundColor": "#9B2335" },
+            { "label": "High", "data": [2], "backgroundColor": "#E74C3C" },
+            { "label": "Medium", "data": [1], "backgroundColor": "#F39C12" },
+            { "label": "Low", "data": [5], "backgroundColor": "#2ECC71" }
+          ]
+        }
+      }
+    ]
+  }
+]
